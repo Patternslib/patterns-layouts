@@ -12,7 +12,9 @@
     <meta content="{{ page.title }} - {{ site.title }}" property="og:title">
     <meta content="/assets/icons/social-image.png" property="og:image">
 
-    <script src="/assets/script/bundle.js" type="text/javascript"></script>
+    <script>window.__patternslib_public_path__ = "/assets/quaive/script/";</script>
+    <script src="/assets/quaive/script/polyfills-loader.js" type="text/javascript"></script>
+    <script src="/assets/quaive/script/bundle.js" type="text/javascript"></script>
   </head>
   <body class="{{ page.class }} {{ layout.class }} layout-{{ page.layout }}">
     {{ content }}
