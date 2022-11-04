@@ -24,12 +24,28 @@
     <meta 
       content="{{ page.summary }}" 
       name="keywords">
+    
     <meta 
-      content="{{ page.title }} - {{ site.title }}" 
-      property="og:title">
-    <meta 
-      content="/assets/icons/social-image.png" 
-      property="og:image">
+        content="{% if page.title %}{{ page.title }} — {% endif %}{{ site.data.brands[site.brand].title }}"
+        property="og:title">
+    {% if page.summary %}
+        <meta 
+            property="og:description"
+            content="{{ page.summary }}"/>
+    {% elsif page.description %}
+        <meta 
+            property="og:description"
+            content="{{ page.description }}"/>
+    {% endif %}
+    {% if page.image %}
+        <meta 
+            content="{{ page.image }}"
+            property="og:image">
+    {% else %}
+        <meta 
+            content="{{ site.touch_icon }}"
+            property="og:image">
+    {% endif %}
 
     <script 
       src="/assets{% if site.brand %}/{{ site.brand }}{% endif %}/script/patterns/bundle.min.js" 
