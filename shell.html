@@ -41,6 +41,10 @@
         <meta 
             content="{{ page.image }}"
             property="og:image">
+    {% elsif page.hero %}
+        <meta 
+            content="{{ page.hero }}"
+            property="og:image">
     {% else %}
         <meta 
             content="{{ site.touch_icon }}"
