@@ -1,63 +1,36 @@
 ---
-layout: app
+layout: patterns/shell
 ---
 
 {% capture this_app %}{{ page.application | slugify }}{% endcapture %}
 
-<div 
-    id="document-content">
-    <dialog
-        class="{{ page.panel_size }} modal-panel"
-        id="modal-panel"
-        open>
-        <div
-            class="modal-panel-contents">
-            {% if page.title %}
-                <div
-                    class="modal-panel-header">
-                    <h1
-                        class="modal-panel-title">{% include patterns/i18n id=page.title %}</h1>
-                </div>
-            {% endif %}
-            {{ content }}
-            {% if page.buttons or layout.buttons %}
-                <div
-                    class="modal-panel-footer modal-panel-main-button-bar button-bar">
-                    {% for button in page.buttons  %}
-                        {% assign this_button = button.label %}
-                        {% if button.type == 'submit' or button.type == 'button' %}
-                            <button
-                                class="pat-button {{ button.class }} {% if button.switch %}pat-switch{% endif %}"
-                                {% if button.switch %}data-pat-switch="{{ button.switch }}"{% endif %}
-                                type="{{ button.type }}" {% if button.path %}formaction="{{ button.path }}"{% endif %}>
-                                {% include patterns/i18n id=this_button %}</button>
-                        {% endif %}
-                        {% if button.type == 'link' %}
-                            <a
-                                href="{{ button.path }}"
-                                class="pat-button {{ button.class }} {% if button.inject %}pat-inject{% endif %}"
-                                {% if button.target %}target="{{ button.target }}{% endif %}"
-                                {% if button.inject %}data-pat-inject="{{ button.inject }}"{% endif %}>{% include patterns/i18n id=this_button %}</a>
-                        {% endif %}
-                    {% endfor %}
-                    {% for button in layout.buttons  %}
-                        {% assign this_button = button.label %}
-                        {% if button.type == 'submit' or button.type == 'button' %}
-                            <button
-                                class="pat-button {{ button.class }}"
-                                type="{{ button.type }}" {% if button.path %}formaction="{{ button.path }}"{% endif %}>
-                                {% include patterns/i18n id=this_button %}</button>
-                        {% endif %}
-                        {% if button.type == 'link' %}
-                            <a
-                                href="{{ button.path }}"
-                                class="pat-button {{ button.class }} {% if button.inject %}pat-inject{% endif %}"
-                                {% if button.target %}target="{{ button.target }}{% endif %}"
-                                {% if button.inject %}data-pat-inject="{{ button.inject }}"{% endif %}>{% include patterns/i18n id=this_button %}</a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-    </dialog>
-</div>
+<dialog
+    class="{{ page.panel_size }} pat-modal-panel"
+    id="pat-modal-panel"
+    open>
+    <div
+        class="modal-panel-contents">
+        {% if page.title %}
+            <div
+                class="modal-panel-header">
+                <h1
+                    class="modal-panel-title">{% include patterns/i18n id=page.title %}</h1>
+            </div>
+        {% endif %}
+        {% if page.action %}
+            <form
+                action="{{ page.action }}"
+                data-pat-inject="{{ page.inject }}"
+                class="pat-inject pat-form modal-panel-body">
+                {{ content }}
+                {% include patterns/modal-buttons.html %}
+            </form>
+        {% else %}
+            <div 
+                class="modal-panel-body">
+                {{ content }}
+                {% include patterns/modal-buttons.html %}
+            </div>
+        {% endif %}                
+    </div>
+</dialog>

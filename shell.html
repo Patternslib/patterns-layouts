@@ -16,7 +16,7 @@
       rel="stylesheet" 
       media="screen" 
       type="text/css" 
-      href="/assets/style/all.css"/>
+      href="{{ site.style_url | default: '/assets/style/all.css' }}"/>
 
     <meta 
       content="{{ page.summary }}" 
@@ -52,11 +52,11 @@
     {% endif %}
 
     <script
-      src="{{ site.bundle_url | default: '/assets/script/patterns/bundle.min.js' }}"
-      type="text/javascript"></script>
-  </head>
-  <body 
-    class="{{ page.class }} {{ layout.class }} layout-{{ page.layout }}">
-    {{ content }}
-  </body>
+        src="{{ site.bundle_url | default: '/assets/script/patterns/bundle.min.js' }}"
+        type="text/javascript"></script>
+    </head>
+    <body 
+        class="{{ page.class }} {{ layout.class }} layout-{{ page.layout  | slugify }}">
+        {{ content }}
+    </body>
 </html>
