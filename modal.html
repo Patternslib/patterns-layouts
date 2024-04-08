@@ -7,7 +7,7 @@ layout: patterns/shell
 <div 
     id="pat-modal-panel-space">
     <dialog
-        class="{{ page.panel_size }} pat-modal-panel"
+        class="{{ page.panel_size | default: 'medium' }} pat-modal-panel"
         id="pat-modal-panel"
         open>
         <div
@@ -16,7 +16,15 @@ layout: patterns/shell
                 <div
                     class="modal-panel-header">
                     <h1
-                        class="modal-panel-title">{% include patterns/i18n id=page.title %}</h1>
+                        class="modal-panel-title">
+                        {%- if page.title contains 'label_' -%}
+                            {% include patterns/i18n 
+                                id=page.title 
+                                source=page.title_source %}
+                        {%- else -%}
+                            {{ page.title }}
+                        {%- endif -%}
+                    </h1>
                 </div>
             {% endif %}
             {% if page.action %}
