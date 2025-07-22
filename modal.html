@@ -2,7 +2,7 @@
 layout: patterns/shell
 ---
 
-{% capture this_app %}{{ page.application | slugify }}{% endcapture %}
+{% capture this_app %}{{ page.application | default: 'untitled-app' | slugify }}{% endcapture %}
 
 <div 
     id="pat-modal-panel-space">
