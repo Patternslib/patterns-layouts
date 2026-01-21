@@ -7,7 +7,7 @@ layout: patterns/shell
 <div 
     id="pat-modal-panel-space">
     <dialog
-        class="{{ page.panel_size | default: 'medium' }} pat-modal-panel"
+        class="{{ page.panel_size | default: 'medium' }} {{ page.panel_class }} {{ layout.panel_class }} pat-modal-panel"
         id="pat-modal-panel"
         open>
         <div
