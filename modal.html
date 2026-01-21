@@ -29,6 +29,9 @@ layout: patterns/shell
             {% endif %}
             {% if page.action %}
                 <form
+                    {% if layout.validate or page.validate %}
+                        validate
+                    {% endif %}
                     action="{{ page.action }}"
                     data-pat-inject="{{ page.inject }}"
                     class="pat-inject pat-form modal-panel-body">
