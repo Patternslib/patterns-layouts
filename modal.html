@@ -7,7 +7,7 @@ layout: patterns/shell
 <div 
     id="pat-modal-panel-space">
     <dialog
-        class="{{ page.panel_size | default: 'medium' }} {{ page.panel_class }} {{ layout.panel_class }} pat-modal-panel"
+        class="{{ page.panel_size | default: 'medium' }} {{ layout.panel_size | default: 'medium' }} {{ page.panel_class }} {{ layout.panel_class }} pat-modal-panel"
         id="pat-modal-panel"
         open>
         <div
@@ -25,6 +25,12 @@ layout: patterns/shell
                             {{ page.title }}
                         {%- endif -%}
                     </h1>
+                    {% if layout.close_button or page.close_button %}
+                        <button
+                            class="
+                                modal-panel-close-button
+                                close-panel">{% include patterns/i18n id="patterns.label_close_imp" %}</button>
+                    {% endif %}
                 </div>
             {% endif %}
             {% if page.action %}
