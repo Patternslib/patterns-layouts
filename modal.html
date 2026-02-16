@@ -27,6 +27,7 @@ layout: patterns/shell
                     </h1>
                     {% if layout.close_button or page.close_button %}
                         <button
+                            tabindex="0"
                             class="
                                 modal-panel-close-button
                                 close-panel">{% include patterns/i18n id="patterns.label_close_imp" %}</button>
