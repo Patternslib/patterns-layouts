@@ -18,11 +18,11 @@ layout: patterns/shell
                     <h1
                         class="modal-panel-title">
                         {%- if page.title -%}
-                            {% include patterns/label 
-                                label=page.title %}
+                            {% include patterns/i18n 
+                                id=page.title %}
                         {%- elsif layout.title  -%}
-                            {% include patterns/label 
-                                label=layout.title %}
+                            {% include patterns/i18n 
+                                id=layout.title %}
                         {%- endif -%}
                     </h1>
                     {% if layout.close_button or page.close_button %}
