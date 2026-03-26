@@ -40,7 +40,11 @@ layout: patterns/shell
                         validate
                     {% endif %}
                     action="{{ page.action }}"
-                    data-pat-inject="{{ page.inject }}"
+                    {% if page.inject %}
+                        data-pat-inject="{{ page.inject }}"
+                    {% else %}
+                        data-pat-inject="{{ layout.inject }}"
+                    {% endif %}
                     class="pat-inject pat-form modal-panel-body">
                     {{ content }}
                     {% include patterns/modal-buttons.html %}
